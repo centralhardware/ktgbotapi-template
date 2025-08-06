@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("dev.inmo:tgbotapi:27.1.1")
+    implementation("dev.inmo:tgbotapi:27.1.2")
     implementation("com.github.centralhardware:telegram-bot-commons:b2dccc0a2b")
 //    implementation("com.github.centralhardware:ktgbotapi-restrict-access-middleware:b0e1f48293")
 }
