@@ -1,8 +1,6 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     kotlin("jvm") version "2.2.0"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    application
 }
 
 group = "me.centralhardware.telegram"
@@ -13,22 +11,19 @@ repositories {
     maven("https://jitpack.io")
 }
 
+val ktgbotapiVersion = "27.1.2"
+
 dependencies {
-    implementation("dev.inmo:tgbotapi:27.1.2")
-    implementation("com.github.centralhardware:telegram-bot-commons:b2dccc0a2b")
-//    implementation("com.github.centralhardware:ktgbotapi-restrict-access-middleware:b0e1f48293")
+    implementation("dev.inmo:tgbotapi:$ktgbotapiVersion")
+    implementation("com.github.centralhardware:telegram-bot-commons:$ktgbotapiVersion")
+//    implementation("com.github.centralhardware:ktgbotapi-restrict-access-middleware:$ktgbotapiVersion")
+}
+
+application {
+    // Kotlin top-level main is compiled into MainKt in its package
+    mainClass.set("me.centralhardware.telegram.MainKt")
 }
 
 tasks.test {
     useJUnitPlatform()
-}
-
-tasks {
-    named<ShadowJar>("shadowJar") {
-        archiveBaseName.set("shadow")
-        mergeServiceFiles()
-        manifest {
-            attributes(mapOf("Main-Class" to "MainKt"))
-        }
-    }
 }
